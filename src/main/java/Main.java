@@ -1,8 +1,6 @@
 import java.util.*;
 
 public class Main {
-
-    private static HashMap<User, Integer> list = new HashMap<>();
     private static ArrayList usersList = new ArrayList();
     public static void main(String[] args) {
 
@@ -15,20 +13,9 @@ public class Main {
 
         putUsersIntoList(user1, user2, user3, user4, user5);
 
-        GettingProcess gettingProcess = new GettingProcess();
+        Thread allProcesses = new Thread(new Processes());
 
-        Thread puttingThread = new Thread(new PuttingProcess(gettingProcess));
-        Thread gettingThread = new Thread(gettingProcess);
-
-        puttingThread.start();
-        gettingThread.start();
-    }
-    public void addToList(User user, int transaction) {
-        list.put(user, transaction);
-    }
-
-    public HashMap<User, Integer> takeFromList() {
-        return list;
+        allProcesses.start();
     }
     private static void putUsersIntoList(User... users) {
         Arrays.stream(users).forEach(user -> usersList.add(user));
