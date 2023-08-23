@@ -1,3 +1,5 @@
+package org.transactions.evgeniy;
+
 import java.util.*;
 
 public class Main {
@@ -13,9 +15,11 @@ public class Main {
 
         putUsersIntoList(user1, user2, user3, user4, user5);
 
-        Thread allProcesses = new Thread(new Processes());
+        Thread allProcesses = new Thread(new Processes(usersList));
+        Thread allProcesses2 = new Thread(new Processes(usersList));
 
         allProcesses.start();
+        allProcesses2.start();
     }
     private static void putUsersIntoList(User... users) {
         Arrays.stream(users).forEach(user -> usersList.add(user));
